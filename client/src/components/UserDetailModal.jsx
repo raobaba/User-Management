@@ -1,4 +1,4 @@
-import Modal from "./Modal"; // Import Modal component
+import Modal from "./Modal"; 
 
 const UserDetailModal = ({ isOpen, onClose, user }) => {
   if (!isOpen || !user) return null;

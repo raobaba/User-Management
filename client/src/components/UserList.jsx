@@ -41,7 +41,7 @@ const UserList = ({ users, onEdit, onDelete, onViewDetails }) => {
                     </button>
                     <button
                       className="bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700 transition"
-                      onClick={() => onDelete(user.id)}
+                      onClick={() => onDelete(user)}
                     >
                       Delete
                     </button>

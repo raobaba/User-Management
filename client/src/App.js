@@ -31,6 +31,7 @@ const App = () => {
     setLoading(true);
     try {
       const response = await api.getUsers();
+      console.log(response.data)
       setUsers(response.data);
     } catch (err) {
       const errorMessage = ErrorHandler.handleApiError(err);
@@ -68,6 +69,7 @@ const App = () => {
   };
 
   const handleDeleteUser = async (id) => {
+    
     try {
       await api.deleteUser(id);
       const updatedUsers = users.filter((u) => u.id !== id);
@@ -103,9 +105,9 @@ const App = () => {
 
   const toggleServer = () => {
     if (isUsingNodeServer) {
-      api.setApiUrl(`"https://jsonplaceholder.typicode.com/users"`);
+      window.location.reload();
     } else {
-      api.setApiUrl("http://localhost:8000/users"); 
+      api.setApiUrl("https://server-side-kvyh.onrender.com/api/v1/users"); 
     }
     setIsUsingNodeServer(!isUsingNodeServer);
   };
