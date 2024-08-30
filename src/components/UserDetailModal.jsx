@@ -5,40 +5,44 @@ const UserDetailModal = ({ isOpen, onClose, user }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h2 className="text-2xl font-bold mb-4">{user.name} Details</h2>
-      <p>
-        <strong>Name:</strong> {user.name}
-      </p>
-      <p>
-        <strong>Username:</strong> {user.username}
-      </p>
-      <p>
-        <strong>Email:</strong> {user.email}
-      </p>
-      <p>
-        <strong>Address:</strong>
-      </p>
-      <p>
-        {user.address.street}, {user.address.suite}
-      </p>
-      <p>
-        {user.address.city}, {user.address.zipcode}
-      </p>
-      <p>
-        <strong>Phone:</strong> {user.phone}
-      </p>
-      <p>
-        <strong>Website:</strong> {user.website}
-      </p>
-      <p>
-        <strong>Company:</strong> {user.company.name}
-      </p>
-      <p>
-        <strong>Catchphrase:</strong> {user.company.catchPhrase}
-      </p>
-      <p>
-        <strong>BS:</strong> {user.company.bs}
-      </p>
+      <div className="p-6 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">{user.name} Details</h2>
+        <div className="space-y-3">
+          <p>
+            <strong className="font-semibold">Name:</strong> {user.name}
+          </p>
+          <p>
+            <strong className="font-semibold">Username:</strong> {user.username}
+          </p>
+          <p>
+            <strong className="font-semibold">Email:</strong> {user.email}
+          </p>
+          <p>
+            <strong className="font-semibold">Address:</strong>
+          </p>
+          <p>
+            {user.address.street}, {user.address.suite}
+          </p>
+          <p>
+            {user.address.city}, {user.address.zipcode}
+          </p>
+          <p>
+            <strong className="font-semibold">Phone:</strong> {user.phone}
+          </p>
+          <p>
+            <strong className="font-semibold">Website:</strong> {user.website}
+          </p>
+          <p>
+            <strong className="font-semibold">Company:</strong> {user.company.name}
+          </p>
+          <p>
+            <strong className="font-semibold">Catchphrase:</strong> {user.company.catchPhrase}
+          </p>
+          <p>
+            <strong className="font-semibold">BS:</strong> {user.company.bs}
+          </p>
+        </div>
+      </div>
     </Modal>
   );
 };
