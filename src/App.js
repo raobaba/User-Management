@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import UserList from './components/UserList';
 import UserForm from './components/UserForm';
 import Pagination from './components/Pagination';
+import UserDetailModal from './components/UserDetailModal'; 
 import ErrorHandler from './utils/ErrorHandler';
 import api from './services/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -135,7 +136,11 @@ const App = () => {
           onEditUser={handleEditUser}
         />
       </Modal>
-     
+      <UserDetailModal 
+        isOpen={isDetailModalOpen} 
+        onClose={handleCloseDetailModal} 
+        user={selectedUser} 
+      />
       <ToastContainer />
     </div>
   );
