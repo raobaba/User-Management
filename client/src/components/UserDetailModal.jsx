@@ -5,9 +5,9 @@ const UserDetailModal = ({ isOpen, onClose, user }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="p-6 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">{user.name} Details</h2>
-        <div className="space-y-3">
+      <div className="p-4 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
+        <h2 className="text-xl font-bold mb-3 text-gray-800">{user.name} Details</h2>
+        <div className="space-y-2">
           <p>
             <strong className="font-semibold">Name:</strong> {user.name}
           </p>

@@ -20,23 +20,23 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [isUsingNodeServer, setIsUsingNodeServer] = useState(false);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [isUsingNodeServer]);
 
   const fetchUsers = async () => {
-    setLoading(true); 
+    setLoading(true);
     try {
       const response = await api.getUsers();
       setUsers(response.data);
     } catch (err) {
       const errorMessage = ErrorHandler.handleApiError(err);
-      setError(errorMessage);
       toast.error(errorMessage);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -48,7 +48,6 @@ const App = () => {
       setIsModalOpen(false);
     } catch (err) {
       const errorMessage = ErrorHandler.handleApiError(err);
-      setError(errorMessage);
       toast.error(errorMessage);
     }
   };
@@ -64,7 +63,6 @@ const App = () => {
       setIsModalOpen(false);
     } catch (err) {
       const errorMessage = ErrorHandler.handleApiError(err);
-      setError(errorMessage);
       toast.error(errorMessage);
     }
   };
@@ -77,7 +75,6 @@ const App = () => {
       toast.success("User deleted successfully!");
     } catch (err) {
       const errorMessage = ErrorHandler.handleApiError(err);
-      setError(errorMessage);
       toast.error(errorMessage);
     }
   };
@@ -104,6 +101,15 @@ const App = () => {
     setIsDetailModalOpen(false);
   };
 
+  const toggleServer = () => {
+    if (isUsingNodeServer) {
+      api.setApiUrl(`"https://jsonplaceholder.typicode.com/users"`);
+    } else {
+      api.setApiUrl("http://localhost:8000/users"); 
+    }
+    setIsUsingNodeServer(!isUsingNodeServer);
+  };
+
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -116,9 +122,17 @@ const App = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">
           User Management
         </h1>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-between">
           <button
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+            className="bg-blue-500 text-white px-6 py-3 ml-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+            onClick={toggleServer}
+          >
+            {isUsingNodeServer
+              ? "Connect with JSONPlaceholder"
+              : "Connect With Node Server"}
+          </button>
+          <button
+            className="bg-blue-500 text-white px-6 py-3 mr-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
             onClick={() => handleOpenModal()}
           >
             Add User
